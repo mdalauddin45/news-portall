@@ -103,21 +103,30 @@ const displayCardNews = mynews => {
 
 
 
-const loadModal = async (news_id) => {
-    const res = await fetch(`https://openapi.programming-hero.com/api/news/${news_id}`);
+const loadModal = async () => {
+    const res = await fetch(`https://openapi.programming-hero.com/api/news/0282e0e58a5c404fbd15261f11c2ab6a`);
     const data = await res.json();
     // return data;
     showModal(data.data);
 }
 const showModal = modal => {
     console.log(modal);
-    const { thumbnail_url, details, title } = modal
-
+    const { thumbnail_url, details, title, total_view, rating, author } = modal[0]
+    const { badge, number } = rating;
+    const { name, img, published_date } = author;
     const modalBody = document.getElementById("modal-body");
     modalBody.textContent = "";
     modalBody.innerHTML = `
-    <img src="${thumbnail_url}"/>
-    <p class="py-4">${title}</p>
+    <img  src="${thumbnail_url}"class="img-fluid ms-auto " />
+    <div id="author-img" class="mt-4">
+    <img src="${img}"class="img-fluid  me-4" style="height: 50px;/>  <p class="fs-5 fw-bold">${name} </p>
+
+    <p class="fs-5 fw-bold">${title}</p>
+    <p class="">${details}</p>
+   
+    <p class="">Total View: <i class="far fa-eye"></i> ${total_view} M<span class="ms-2 me-2"></span>  Badge: ${badge} <span class="ms-2 me-2"></span>   Rating Number: ${number}</p>
+    <p class="py-4">Published Date: ${published_date}</p>
+    </div>
     `;
 }
 loadModal();

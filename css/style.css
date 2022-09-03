@@ -10,3 +10,7 @@
 #nav-image img {
     border-radius: 50%;
 }
+
+.row {
+    border-radius: 10px;
+}
