@@ -32,11 +32,14 @@ const displayCardNews = mynews => {
 
     // spinner 
     const spinner = document.getElementById("spinner");
+    const noNews = document.getElementById("no-news");
     if (mynews.length === 0) {
         spinner.classList.remove("d-none");
+        noNews.classList.remove("d-none");
     }
     else {
         spinner.classList.add("d-none");
+        noNews.classList.add("d-none");
     }
 
 

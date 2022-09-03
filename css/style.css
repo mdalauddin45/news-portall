@@ -6,3 +6,7 @@
     color: rgb(255, 213, 0);
 
 }
+
+#nav-image img {
+    border-radius: 50%;
+}
