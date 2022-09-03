@@ -24,12 +24,15 @@ const loadAllNews = async () => {
     // return data;
     displayCardNews(data.data);
 }
+
+
+// spinner
 const spinner = document.getElementById("spinner");
 spinner.classList.remove("d-none");
 const displayCardNews = mynews => {
     const spinner = document.getElementById("spinner");
     spinner.classList.add("d-none");
-    // console.log(mynews);
+    // console.log(mynews.length);
     const cardContainer = document.getElementById('card-container');
     cardContainer.textContent = ' ';
     mynews.forEach(news => {
@@ -78,6 +81,8 @@ const displayCardNews = mynews => {
     `;
         cardContainer.appendChild(card);
     })
+    // category count 
+    document.getElementById("category-count").innerText = mynews.length;
 }
 
 const loadModal = async () => {
@@ -87,7 +92,7 @@ const loadModal = async () => {
     showModal(data.data[0]);
 }
 const showModal = modal => {
-    console.log(modal);
+    // console.log(modal);
     const { thumbnail_url, details, title } = modal
 
     const modalBody = document.getElementById("modal-body");
