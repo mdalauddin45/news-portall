@@ -11,7 +11,7 @@ const displayNav = navbar => {
         const { category_name } = nav;
         const li = document.createElement('li');
         li.classList.add('nav-item')
-        li.innerHTML = `<button onclick="display(${nav.category_id})" class=" fs-4 mb-4 mt-4 ms-4" >${category_name}</button>
+        li.innerHTML = `<button onclick="display(${nav.category_id})" class=" fs-4 mb-4 mt-4 ms-4 border-0 bg-light" >${category_name}</button>
         `;
         navContainer.appendChild(li);
     })
@@ -82,7 +82,7 @@ const displayCardNews = mynews => {
   </div>
  
   <div class="col">
-  <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+  <button onclick="loadModal()" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
   Details
 </button>
   </div>
@@ -95,14 +95,16 @@ const displayCardNews = mynews => {
     document.getElementById("category-count").innerText = mynews.length;
 }
 
-const loadModal = async () => {
-    const res = await fetch("https://openapi.programming-hero.com/api/news/0282e0e58a5c404fbd15261f11c2ab6a");
+
+
+const loadModal = async (news_id) => {
+    const res = await fetch(`https://openapi.programming-hero.com/api/news/${news_id}`);
     const data = await res.json();
     // return data;
-    showModal(data.data[0]);
+    showModal(data.data);
 }
 const showModal = modal => {
-    // console.log(modal);
+    console.log(modal);
     const { thumbnail_url, details, title } = modal
 
     const modalBody = document.getElementById("modal-body");
@@ -110,9 +112,6 @@ const showModal = modal => {
     modalBody.innerHTML = `
     <img src="${thumbnail_url}"/>
     <p class="py-4">${title}</p>
-  
-    <p class="py-4">${details.length > 500 ? details.slice(0, 500) + '...' : details
-        } </p>
     `;
 }
 loadModal();
