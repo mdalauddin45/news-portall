@@ -33,13 +33,16 @@ const displayCardNews = mynews => {
     // spinner 
     const spinner = document.getElementById("spinner");
     const noNews = document.getElementById("no-news");
+    const allCategoryNo = document.getElementById("all-category");
     if (mynews.length === 0) {
         spinner.classList.remove("d-none");
         noNews.classList.remove("d-none");
+        allCategoryNo.classList.add("d-none")
     }
     else {
         spinner.classList.add("d-none");
         noNews.classList.add("d-none");
+        allCategoryNo.classList.remove("d-none")
     }
 
 
