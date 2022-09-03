@@ -62,7 +62,7 @@ const displayCardNews = mynews => {
         <p class="card-text fs-5">${details.length > 200 ? details.slice(0, 200) + '...' : details
             }</p >
         </div >
-        <div id="author-container" class="d-flex mt-4">
+        <div id="author-container" class="d-flex mt-4 mb-4">
         <div id='author-img' class="col d-flex" >
         
         <img src="${img}"class="img-fluid" style="height: 50px; alt="...">
@@ -73,7 +73,7 @@ const displayCardNews = mynews => {
        <div class="col"><i class="far fa-eye"></i>
         ${total_view ? total_view : 0}M
   </div> 
-  <div class='me-4' id=''>
+  <div class='me-4 ' id=''>
   <i class="fas fa-star"></i>
   <i class="fas fa-star"></i>
   <i class="fas fa-star"></i>
