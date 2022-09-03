@@ -11,28 +11,38 @@ const displayNav = navbar => {
         const { category_name } = nav;
         const li = document.createElement('li');
         li.classList.add('nav-item')
-        li.innerHTML = `<a  class="nav-link fs-4 mb-4 mt-4" href="">${category_name}</a>
+        li.innerHTML = `<button onclick="display(${nav.category_id})" class=" fs-4 mb-4 mt-4 ms-4" >${category_name}</button>
         `;
         navContainer.appendChild(li);
     })
 }
 loadNav();
 
-const loadAllNews = async () => {
-    const res = await fetch("https://openapi.programming-hero.com/api/news/category/01");
+const display = async (id) => {
+    const res = await fetch(`https://openapi.programming-hero.com/api/news/category/0${id}`);
     const data = await res.json();
     // return data;
     displayCardNews(data.data);
 }
 
 
-// spinner
-const spinner = document.getElementById("spinner");
-spinner.classList.remove("d-none");
+
+
 const displayCardNews = mynews => {
+
+    // spinner 
     const spinner = document.getElementById("spinner");
-    spinner.classList.add("d-none");
-    // console.log(mynews.length);
+    if (mynews.length === 0) {
+        spinner.classList.remove("d-none");
+    }
+    else {
+        spinner.classList.add("d-none");
+    }
+
+
+
+    // console.log(mynews);
+
     const cardContainer = document.getElementById('card-container');
     cardContainer.textContent = ' ';
     mynews.forEach(news => {
@@ -106,4 +116,5 @@ const showModal = modal => {
     `;
 }
 loadModal();
-loadAllNews();
+display();
+
